@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>About Us - St. Vincent Strambi C.P of Home for the Aged</title> 
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/subpages.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg fixed-top">
+	  <a class="navbar-brand" href="index.html">HOME</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+
+	  <div class="collapse navbar-collapse " id="navbarSupportedContent">
+	    <ul class="navbar-nav mr-4">
+	      
+	      <li class="nav-item">
+	        <a class="nav-link" data-value="history" href="about.html#history">HISTORY</a>
+	      </li> 
+          <li class="nav-item">
+	        <a class="nav-link" data-value="mission" href="about.html#mission">MISSION</a>
+	      </li> 
+          <li class="nav-item">
+	        <a class="nav-link" data-value="vision" href="about.html#vision">VISION</a>
+	      </li> 
+	      <li class="nav-item">
+	        <a class="nav-link " data-value="service" href="#">SERVICES</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link " data-value="contact" href="#">CONTACT</a>
+	      </li> 
+	    </ul>
+	    
+	  </div>
+</nav>  
+ 
+<div class="donate" id="donate">
+	<div class="container">
+	  <h1 class="text-center">You can make a difference</h1>  
+		<div class="row"> 
+			<div class="col-md-3">
+				<img src="assets/images/donate.jpg" class="img-fluid" style="height: 60%;"> 
+			</div>
+			<div class="col-md-9 desc" style="display: inline-flex;">  
+                <div class="col-md-5">
+                    <div id="status"></div>
+                    <label class="form-label">Payment <i style="color: red;">*</i></label>
+                    <select onchange="onchange_payment()" id="mydonation_payment" class="form-control">
+                        <option value="">Select</option>
+                        <option value="C">Cash</option>
+                        <option value="CHK">Check</option>
+                    </select> 
+
+                    <div id="amount_details" style="margin-top: 10px;display: none;">
+                        <div>
+                            <label class="form-label">Amount <i>(Minimun: 100PHP)</i><i style="color: red;"> *</i></label>
+                            <input id="mydonation_amount_cash" type="number" min="100" class="form-control" />
+                        </div>
+                    </div>   
+
+                    <div id="select_check" style="margin-top: 10px;display: none;">
+                        <div>
+                            <label class="form-label text-orange">Bank Information</label>
+                        </div> 
+                        <div>
+                            <label class="form-label">Amount <i>(Minimun: 100PHP)</i><i style="color: red;"> *</i></label>
+                            <input id="mydonation_amount_check" type="number" min="100" class="form-control" />
+                        </div>  
+                        <div>
+                            <label class="form-label">Bank Name</label>
+                            <input id="mydonation_bankname" type="text" class="form-control" />
+                        </div>  
+                        <div>
+                            <label class="form-label">Check Reference No.</label>
+                            <input id="mydonation_checkno" type="text" class="form-control" />
+                        </div>
+                    </div> 
+
+                    <div style="margin-top: 10px;">
+                        <label class="form-label">Remarks</label>
+                        <textarea id="mydonation_remarks" class="form-control" rows="3"></textarea>
+                    </div>
+
+                    <div style="margin-top: 10px;">
+                        <label class="form-label">Upload File <i>(JPEG/JPG/PNG)</i></label>
+                        <input id="mydonation_upload" type="file" class="form-control" accept="image/png, image/jpeg, image/jpg" /> 
+                    </div>
+                    
+                    <div style="display: grid;"> 
+                        <button id="btn_addMyDonation" onclick="btn_addMyDonation()" title="Confirm Donation" type="button" class="btnn">
+                            Confirm Donation
+                        </button>  
+                    </div>
+                </div>  
+                <div class="col-md-7">
+                    <div class="form-group">
+                        <label class="form-label text-orange">Bank Details:</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Bank Name: RCBC</label><br>
+                        <label class="form-label">Account Number: 0123-4567-8910</label><br>  
+                        <label class="form-label">Account Name:  St. Vincent Strambi C.P</label>  
+                    </div> 
+                    <div class="form-group">
+                        <label class="form-label">Bank Name: Metrobank</label><br>
+                        <label class="form-label">Account Number: 0123-4567-8910</label><br>
+                        <label class="form-label">Account Name:  St. Vincent Strambi C.P</label>  
+                    </div> 
+                    <div class="form-group">
+                        <label class="form-label text-orange">GCASH Payment:</label>
+                    </div>
+                    <div class="form-group"> 
+                        <label class="form-label">Account Number: 0912-345-6789</label>  
+                        <label class="form-label">Account Name:  St. Vincent Strambi C.P</label>  
+                    </div>  
+                </div>
+			</div>
+		</div>
+	</div>
+</div>   
+	
+<footer class="footer mt-auto py-3" style="background:#F97300;">
+    <div class="container">
+        <p class="text-center text-white lead">Copyright &copy; <script type="text/javascript">
+            document.write(new Date().getFullYear());
+        </script> | St. Vincent Strambi C.P of Home for the Aged. All rights reserved.</p>
+    
+    </div>
+</footer>
+  
+<script type="text/javascript" src="assets/js/jquery.js"></script> 
+<script type="text/javascript" src="assets/js/bootstrap.bundle.min.js"></script> 
+
+<script>
+    $(document).ready(function(){
+        $('.header').height($(window).height());
+
+        $(".navbar a").click(function(){
+            $("body,html").animate({
+                scrollTop:$("#" + $(this).data('value')).offset().top
+            },1000)
+        
+        }) 
+    })
+
+     // Clear Inputs
+     function clear_inputs_donation_select(){
+        document.getElementById("mydonation_amount_cash").value = ""; 
+        document.getElementById("mydonation_bankname").value = ""; 
+        document.getElementById("mydonation_checkno").value = "";
+        document.getElementById("mydonation_amount_check").value = ""; 
+        document.getElementById("mydonation_remarks").value = "";
+    }
+    function clear_inputs_donation(){  
+        document.getElementById("mydonation_upload").value = "";
+        document.getElementById("mydonation_payment").value = ""; 
+        document.getElementById("mydonation_remarks").value = "";  
+        // Cash
+        document.getElementById("mydonation_amount_cash").value = ""; 
+        // Check - Bank Details
+        document.getElementById("mydonation_bankname").value = "";  
+        document.getElementById("mydonation_checkno").value = ""; 
+        document.getElementById("mydonation_amount_check").value = "";  
+
+        document.getElementById("mydonation_payment").selectedIndex = 0;
+        document.getElementById("select_check").style.display = "none";
+        document.getElementById("amount_details").style.display = "none"; 
+    }
+     
+    //SELECT PAYMENT [Cash/Check] ONCHANGE
+    function onchange_payment(){
+        clear_inputs_donation_select();
+        var get_payment = document.getElementById("mydonation_payment").value; 
+        if (get_payment != "") {
+            if (get_payment == "C") { // Cash
+                document.getElementById("amount_details").style.display = "";
+                document.getElementById("select_check").style.display = "none"; 
+            }
+            else{ // Check
+                document.getElementById("amount_details").style.display = "none";
+                document.getElementById("select_check").style.display = "";  
+            }
+        }
+        else{
+            document.getElementById("amount_details").style.display = "none";
+            document.getElementById("select_check").style.display = "none"; 
+        }
+    }  
+
+    function btn_addMyDonation(){  
+        var payment = document.getElementById("mydonation_payment").value; 
+        var remarks = document.getElementById("mydonation_remarks").value; 
+        // Cash
+        var amount_cash = document.getElementById("mydonation_amount_cash").value; 
+        // Check - Bank Details
+        var bankname = document.getElementById("mydonation_bankname").value;  
+        var checkno = document.getElementById("mydonation_checkno").value; 
+        var amount_check = document.getElementById("mydonation_amount_check").value;   
+        // Upload File
+        var file = (document.getElementById('mydonation_upload').files[0]===undefined)? "": document.getElementById('mydonation_upload').files[0];
+        var name = (file!=="")?file.name.split('.').slice(0, -1).join('.'): "";
+
+        var form_data = new FormData();
+            form_data.append('data', 'anon_addmydonation');   
+            form_data.append('payment', payment); 
+            form_data.append('remarks', remarks); 
+            form_data.append('amount_cash', amount_cash); 
+            form_data.append('bankname', bankname); 
+            form_data.append('checkno', checkno); 
+            form_data.append('amount_check', amount_check);   
+            form_data.append('file', file); 
+            form_data.append('name', name);   
+ 
+        if (payment.length > 0) { 
+            if (payment == "C") { // Cash
+                if (amount_cash > 99){
+                    document.getElementById("mydonation_amount_cash").style.borderColor = "";
+                    execute_adddonation();
+                }
+                else{
+                    document.getElementById("mydonation_amount_cash").style.borderColor = (amount_cash < 100)? "#e45454" : ""; 
+                    prompt_alert("alert-warning","Amount Invalid! Minimum Amount must be 100 PHP."); 
+                }
+            }
+            else{ // Check
+                if (amount_check > 99){ 
+                    document.getElementById("mydonation_amount_check").style.borderColor = "";
+                    execute_adddonation();
+                }
+                else{ 
+                    document.getElementById("mydonation_amount_check").style.borderColor = (amount_check < 100)? "#e45454" : "";
+                    prompt_alert("alert-warning","Amount Invalid! Minimum Amount must be 100 PHP.");  
+                } 
+            } 
+        }
+        else{
+            prompt_alert("alert-warning","Invalid! Select Payment."); 
+        } 
+
+        function execute_adddonation(){
+            document.getElementById("btn_addMyDonation").disabled = true;
+            fetch('includes/execute.php', {
+                method: 'POST', 
+                body: form_data
+                }).then(function (response) {
+                    return response.json();
+                }).then(function (data) { 
+                // console.log(data);  
+                if (data.status == 1){ 
+                    prompt_alert("alert-success","Success! Thanks for the donation. We appreciate your generosity.");  
+                    clear_inputs_donation();  
+                } 
+                else{ 
+                    prompt_alert("alert-danger","Error! Cannot connect to Database."); 
+                }
+            })["catch"](function (error) {
+                console.log(error);
+                prompt_alert("alert-danger","Internal Error! Cannot connect to server.");
+            });  
+            document.getElementById("btn_addMyDonation").disabled = false;
+        }
+    } 
+
+    function prompt_alert(status,text){
+        document.getElementById("status").classList = "";
+        document.getElementById("status").classList.add("alert");
+        document.getElementById("status").classList.add(status);
+        document.getElementById("status").innerText = text; 
+    }
+</script>
+</body>
+</html>

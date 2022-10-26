@@ -1,3 +1,9 @@
+<?php
+if (session_status() !== PHP_SESSION_NONE) {
+  header('Location: dashboard/?event-activity');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,7 +66,7 @@
         <div class="col-lg-7" style="margin-top:30px ;">
           <h1>St. Vincent <br><span>Strambi C.P</span> <br>of Home for the Aged</h1>
           <h2>WE CARE, WE VALUE.<h2>
-              <a href="#about" class="btn-get-started scrollto">Donate</a>
+              <a href="donation.php" class="btn-get-started scrollto">Donate</a>
         </div>
         <div class="col-lg-5">
           <section style="padding: 0px; background-color: white;">
@@ -239,15 +245,17 @@
               <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up">
                 <div class="icon-box" style="background-color: rgba(255, 255, 255, 0.5);">
                   <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                  <h4><a href="">Lorem Ipsum</a></h4>
-                  <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+                  <h4><a href="#">CORE PROGRAM AND SERVICES</a></h4>
+                  <p>Core Program refers the primary interventions that are being facilitated in the healing and move, process of a particular client.
+
+St. Vincent Strambi Home for the Aged, Inc. as it continues to facilitate the development and implementation of helping interventions for its clientele identifies it main program with corresponding services. These are Residential Care Program.</p>
                 </div>
               </div>
 
               <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="150">
                 <div class="icon-box" style="background-color: rgba(255, 255, 255, 0.5);">
                   <div class="icon"><i class="bx bx-file"></i></div>
-                  <h4><a href="">Sed ut perspiciatis</a></h4>
+                  <h4><a href="#">Sed ut perspiciatis</a></h4>
                   <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
                 </div>
               </div>
@@ -255,7 +263,7 @@
               <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="300">
                 <div class="icon-box" style="background-color: rgba(255, 255, 255, 0.5);">
                   <div class="icon"><i class="bx bx-tachometer"></i></div>
-                  <h4><a href="">Magni Dolores</a></h4>
+                  <h4><a href="#">Magni Dolores</a></h4>
                   <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
                 </div>
               </div>
@@ -263,7 +271,7 @@
               <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="fade-up" data-aos-delay="450">
                 <div class="icon-box" style="background-color: rgba(255, 255, 255, 0.5);">
                   <div class="icon"><i class="bx bx-world"></i></div>
-                  <h4><a href="">Nemo Enim</a></h4>
+                  <h4><a href="#">Nemo Enim</a></h4>
                   <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
                 </div>
               </div>
@@ -271,7 +279,7 @@
               <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="fade-up" data-aos-delay="600">
                 <div class="icon-box" style="background-color: rgba(255, 255, 255, 0.5);">
                   <div class="icon"><i class="bx bx-slideshow"></i></div>
-                  <h4><a href="">Dele cardo</a></h4>
+                  <h4><a href="#">Dele cardo</a></h4>
                   <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
                 </div>
               </div>
@@ -279,7 +287,7 @@
               <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="fade-up" data-aos-delay="750">
                 <div class="icon-box" style="background-color: rgba(255, 255, 255, 0.5);">
                   <div class="icon"><i class="bx bx-arch"></i></div>
-                  <h4><a href="">Divera don</a></h4>
+                  <h4><a href="#">Divera don</a></h4>
                   <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
                 </div>
               </div>
@@ -287,7 +295,7 @@
               <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="fade-up" data-aos-delay="450">
                 <div class="icon-box" style="background-color: rgba(255, 255, 255, 0.5);">
                   <div class="icon"><i class="bx bx-world"></i></div>
-                  <h4><a href="">Nemo Enim</a></h4>
+                  <h4><a href="#">Nemo Enim</a></h4>
                   <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
                 </div>
               </div>
@@ -295,7 +303,7 @@
               <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="fade-up" data-aos-delay="600">
                 <div class="icon-box" style="background-color: rgba(255, 255, 255, 0.5);">
                   <div class="icon"><i class="bx bx-slideshow"></i></div>
-                  <h4><a href="">Dele cardo</a></h4>
+                  <h4><a href="#">Dele cardo</a></h4>
                   <p>Quis consequatur saepe eligendi voluptatem consequatur dolor consequuntur</p>
                 </div>
               </div>
@@ -303,7 +311,7 @@
               <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="fade-up" data-aos-delay="750">
                 <div class="icon-box" style="background-color: rgba(255, 255, 255, 0.5);">
                   <div class="icon"><i class="bx bx-arch"></i></div>
-                  <h4><a href="">Divera don</a></h4>
+                  <h4><a href="#">Divera don</a></h4>
                   <p>Modi nostrum vel laborum. Porro fugit error sit minus sapiente sit aspernatur</p>
                 </div>
               </div>

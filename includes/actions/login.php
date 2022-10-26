@@ -1,14 +1,12 @@
 <?php
-
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-include 'C:\xampp\htdocs\GitHub\StVincent_v2.0\includes\config.php';
+include '../config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // username and password sent from form
     $user =  mysqli_real_escape_string($conn, $_POST['user']);
     $pass = mysqli_real_escape_string($conn, $_POST['pass']);
 
@@ -40,7 +38,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = mysqli_fetch_assoc($sql_notif);
         $_SESSION['st_notifs'] = $row['notif_count'];
 
-        header("location: http://localhost:8080/GitHub/StVincent_v2.0/dashboard/?event-activity");
+        if ($_SESSION['st_role'] == 'admin') { 
+            $_SESSION['message'] = '<br> Welcome admin! <br><br>';
+            $_SESSION['message_type'] = 'info';
+            header("location: http://localhost:8080/GitHub/StVincent_v2.0/admin/?patient-info"); 
+        }
+        else { 
+            $_SESSION['message'] = '<br> Welcome user! <br><br>';
+            $_SESSION['message_type'] = 'info';
+            header("location: http://localhost:8080/GitHub/StVincent_v2.0/dashboard/?event-activity"); 
+        }
     }
 
     else {

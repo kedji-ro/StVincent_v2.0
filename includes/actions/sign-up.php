@@ -1,14 +1,16 @@
 <?php
-include 'C:\xampp\htdocs\GitHub\StVincent_v2.0\includes\config.php';
+
+include '../config.php';
+
 use \PHPMailer\PHPMailer\PHPMailer;
 use \PHPMailer\PHPMailer\SMTP;
 use \PHPMailer\PHPMailer\Exception;
 
 use function PHPSTORM_META\elementType;
 
-require 'C:\xampp\htdocs\GitHub\StVincent_v2.0\includes\vendor\phpmailer\src\Exception.php';
-require 'C:\xampp\htdocs\GitHub\StVincent_v2.0\includes\vendor\phpmailer\src\PHPMailer.php';
-require 'C:\xampp\htdocs\GitHub\StVincent_v2.0\includes\vendor\phpmailer\src\SMTP.php';
+require '../vendor/phpmailer/src/Exception.php';
+require '../vendor/phpmailer/src/PHPMailer.php';
+require '../vendor/phpmailer/src/SMTP.php';
 
 
 function generateToken($length = 35)

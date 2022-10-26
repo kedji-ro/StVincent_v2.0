@@ -17,3 +17,8 @@ Changes:
 - Added toasts
 - Made data lists work
 - Made Bank Assets total work
+
+#2022-10-27 v2.2
+Changes:
+- Added notification validations
+- Added redirectoin validations

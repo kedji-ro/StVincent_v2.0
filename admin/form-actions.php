@@ -99,7 +99,7 @@ if (isset($_POST['create_account'])) {
     // $result = $conn->query($query);
 
     $add_patient = "INSERT INTO `tb_useracct`(`_username`, `_password`, `_fullname`, `_mobile`, `_email`, `_address`, `_role`, `_active`, `_datecreated`) 
-                                                VALUES ('" . $user . "','" . $pass . "','" . $fullname . "','" . $mobile . "','" . $email . "','" . $address . "','user','1','" . $datenow . "')";
+                                                VALUES ('" . $user . "','md5(" . $pass . ")','" . $fullname . "','" . $mobile . "','" . $email . "','" . $address . "','user','1','" . $datenow . "')";
 
     if (mysqli_query($conn, $add_patient)) {
         echo json_encode(array("status" => 1));

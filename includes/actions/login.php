@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['st_role'] = $row['_role'];
         $_SESSION['st_volunteer'] = $row['_volunteer'];
 
-        $sql_notif = mysqli_query($conn, "SELECT COUNT(*) as `notif_count` FROM tb_notifications WHERE _user_id = ".$_SESSION['st_userid'].";");
+        $sql_notif = mysqli_query($conn, "SELECT COUNT(*) as `notif_count` FROM tb_notifications WHERE _read = '0'AND _user_id = ".$_SESSION['st_userid'].";");
         
         $row = mysqli_fetch_assoc($sql_notif);
         $_SESSION['st_notifs'] = $row['notif_count'];
@@ -44,7 +44,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("location: http://localhost:8080/GitHub/StVincent_v2.0/admin/?patient-info"); 
         }
         else { 
-            $_SESSION['message'] = '<br> Welcome user! <br><br>';
+            if ($_SESSION['st_notifs'] != 0)
+            {
+                $_SESSION['message'] = 'Welcome user! <br> You have unread notifications.';
+            }
+            else {
+                $_SESSION['message'] = '<br> Welcome user! <br><br>';
+            }
+            
             $_SESSION['message_type'] = 'info';
             header("location: http://localhost:8080/GitHub/StVincent_v2.0/dashboard/?event-activity"); 
         }

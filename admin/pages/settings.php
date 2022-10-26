@@ -1,3 +1,5 @@
+<?php unset($_SESSION['message']); ?>
+
 <div class="content animated fadeIn">
             <div class="container-fluid">
                 <div class="row">

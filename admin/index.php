@@ -1,5 +1,10 @@
 <?php
+
 include '../includes/config.php';
+if ($_SESSION['st_role'] == 'user') {
+    header('Location: localhost:8080/GitHub/StVincent_v2.0/dashboard/?event-activity');
+}
+
 ?>
 
 <!doctype html>

@@ -1,5 +1,10 @@
 <?php
 include '../includes/config.php';
+include 'read-notif.php';
+
+if ($_SESSION['st_role'] == 'admin') {
+    header('Location: http://localhost:8080/GitHub/StVincent_v2.0/admin/?patient-info');
+}
 ?>
 
 <!doctype html>
@@ -68,11 +73,11 @@ include '../includes/config.php';
     <link href="../assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" /> -->
 </head>
 
-<body onload="toast.showNotification('pe-7s-info','<?php echo $_SESSION['message']; ?>','<?php echo $_SESSION['message_type']; ?>');">
-<?php unset($_SESSION['message']); ?>
+<body id="inBody" onload="toast.showNotification('pe-7s-info','<?php echo $_SESSION['message']; ?>','<?php echo $_SESSION['message_type']; ?>');">
+    <?php unset($_SESSION['message']); ?>
 
     <div class="wrapper">
-        <div class="sidebar" data-color="black" data-image="assets/img/sidebar-4.jpg">
+        <div class="sidebar" data-color="black" data-image="assets/img/sidebar-5.jpg">
 
             <!-- 
             Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
@@ -127,19 +132,20 @@ include '../includes/config.php';
                             <span class="icon-bar"></span>
                         </button>
                     </div>
-                    <div class="collapse navbar-collapse">
+                    <div id="navB" class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-left">
                             <!-- Input <li> here to show on left side of header navbar-->
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown">
+                            <li class="dropdown" id="notifBell">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-bell"></i>
-                                    <?php echo '<span class="notification">' . $_SESSION['st_notifs'] . '</span>'; ?>
-                                    <!-- <span class="notification">5</span> -->
+                                    <?php if ($_SESSION['st_notifs'] != 0) { ?>
+                                        <span class="notification"> <?php echo $_SESSION['st_notifs']; ?> </span>
+                                    <?php } ?>
                                 </a>
-                                <ul class="container dropdown-menu text-wrap" style="width: 300px;">
-                                    <?php include 'notifications.php' ?>
+                                <ul class="container dropdown-menu text-wrap" style="width: 300px; height: 400px;; overflow-y:scroll;">
+                                    <?php include 'notifications.php'; ?>
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -222,5 +228,20 @@ include '../includes/config.php';
 <script src="toast.js"></script>
 
 <!---------------------- Functionality scripts ---------------------->
+
+<script>
+    function readNotification(id) {
+        $.ajax({
+            type: 'POST',
+            url: 'read-notif.php',
+            data: {
+                "id": id
+            },
+            success: function(msg) {
+                $("#navB").load(location.href + " #navB");
+            }
+        });
+    }
+</script>
 
 </html>

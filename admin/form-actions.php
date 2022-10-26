@@ -23,9 +23,8 @@ if (isset($_POST['change_pass'])) {
                 $_SESSION['message'] = '<br> Password changed! <br><br>';
                 $_SESSION['message_type'] = 'success';
                 header("location: http://localhost:8080/GitHub/StVincent_v2.0/admin/?patient-info");
-            }
-            else {
-                $_SESSION['message'] = '<br> Someting went wrong: '.$conn->error.' <br><br>';
+            } else {
+                $_SESSION['message'] = '<br> Someting went wrong: ' . $conn->error . ' <br><br>';
                 $_SESSION['message_type'] = 'danger';
                 header("location: http://localhost:8080/GitHub/StVincent_v2.0/admin/?patient-info");
             }
@@ -76,7 +75,7 @@ if (isset($_POST['add_patient'])) {
         $_SESSION['message_type'] = 'success';
         header('Location: http://localhost:8080/GitHub/StVincent_v2.0/admin/?patient-info');
     } else {
-        $_SESSION['message'] = '<br> Someting went wrong: '.$conn->error.' <br><br>';
+        $_SESSION['message'] = '<br> Someting went wrong: ' . $conn->error . ' <br><br>';
         $_SESSION['message_type'] = 'danger';
         header('Location: http://localhost:8080/GitHub/StVincent_v2.0/admin/?patient-info');
         echo json_encode(array("status" => 2));
@@ -109,7 +108,7 @@ if (isset($_POST['create_account'])) {
         header('Location: http://localhost:8080/GitHub/StVincent_v2.0/admin/?user-accounts');
     } else {
         echo json_encode(array("status" => 2));
-        $_SESSION['message'] = '<br> Someting went wrong: '.$conn->error.' <br><br>';
+        $_SESSION['message'] = '<br> Someting went wrong: ' . $conn->error . ' <br><br>';
         $_SESSION['message_type'] = 'danger';
         header('Location: http://localhost:8080/GitHub/StVincent_v2.0/admin/?user-accounts');
     }
@@ -145,7 +144,36 @@ if (isset($_POST['add_donation'])) {
         header('Location: http://localhost:8080/GitHub/StVincent_v2.0/admin/?donation');
     } else {
         echo json_encode(array("status" => 2));
-        $_SESSION['message'] = '<br> Something went wrong: '.$conn->error.' <br><br>';
+        $_SESSION['message'] = '<br> Something went wrong: ' . $conn->error . ' <br><br>';
+        $_SESSION['message_type'] = 'danger';
+        header('Location: http://localhost:8080/GitHub/StVincent_v2.0/admin/?donation');
+    }
+
+    $conn->close();
+}
+
+if (isset($_POST['recieve_donation'])) {
+
+    $d_id = mysqli_real_escape_string($conn, $_POST['d_id']);
+    $u_id = mysqli_real_escape_string($conn, $_POST['u_id']);
+
+    $datenow = date('Y-m-d H:i:s');
+
+    $up_d = "UPDATE `tb_donation` SET `_status`='1' WHERE _id = '" . $d_id . "'";
+
+    $query_insertNotif = "INSERT INTO `tb_notifications`(`_user_id`,`_title`, `_description`, `_timestamp`,`_read`) 
+	    VALUES ('" . $u_id . "','Donation Recieved','Your donation has been recieved.', CURRENT_TIMESTAMP(),false);";
+
+    if (mysqli_query($conn, $up_d)) {
+        if (mysqli_query($conn, $query_insertNotif)) {
+            echo json_encode(array("status" => 1));
+            $_SESSION['message'] = '<br> Donation received! <br><br>';
+            $_SESSION['message_type'] = 'success';
+            header('Location: http://localhost:8080/GitHub/StVincent_v2.0/admin/?donation');
+        }   
+    } else {
+        echo json_encode(array("status" => 2));
+        $_SESSION['message'] = '<br> Something went wrong: ' . $conn->error . ' <br><br>';
         $_SESSION['message_type'] = 'danger';
         header('Location: http://localhost:8080/GitHub/StVincent_v2.0/admin/?donation');
     }
@@ -181,7 +209,7 @@ if (isset($_POST['add_employee'])) {
         $_SESSION['message_type'] = 'success';
         header('Location: http://localhost:8080/GitHub/StVincent_v2.0/admin/?employee');
     } else {
-        $_SESSION['message'] = '<br> Something went wrong: '.$conn->error.' <br><br>';
+        $_SESSION['message'] = '<br> Something went wrong: ' . $conn->error . ' <br><br>';
         $_SESSION['message_type'] = 'danger';
         header('Location: http://localhost:8080/GitHub/StVincent_v2.0/admin/?employee');
         echo json_encode(array("status" => 2));
@@ -207,7 +235,7 @@ if (isset($_POST['add_item'])) {
         $_SESSION['message_type'] = 'success';
         header('Location: http://localhost:8080/GitHub/StVincent_v2.0/admin/?items');
     } else {
-        $_SESSION['message'] = '<br> Something went wrong: '.$conn->error.' <br><br>';
+        $_SESSION['message'] = '<br> Something went wrong: ' . $conn->error . ' <br><br>';
         $_SESSION['message_type'] = 'danger';
         header('Location: http://localhost:8080/GitHub/StVincent_v2.0/admin/?items');
         echo json_encode(array("status" => 2));
@@ -236,7 +264,7 @@ if (isset($_POST['add_event'])) {
         $_SESSION['message_type'] = 'success';
         header('Location: http://localhost:8080/GitHub/StVincent_v2.0/admin/?events');
     } else {
-        $_SESSION['message'] = '<br> Something went wrong: '.$conn->error.' <br><br>';
+        $_SESSION['message'] = '<br> Something went wrong: ' . $conn->error . ' <br><br>';
         $_SESSION['message_type'] = 'danger';
         header('Location: http://localhost:8080/GitHub/StVincent_v2.0/admin/?events');
         echo json_encode(array("status" => 2));
@@ -268,7 +296,7 @@ if (isset($_POST['admin_save'])) {
         header("Location: http://localhost:8080/GitHub/StVincent_v2.0/admin/?settings");
         echo json_encode(array('status' => 1));
     } else {
-        $_SESSION['message'] = '<br> Something went wrong: '.$conn->error.' <br><br>';
+        $_SESSION['message'] = '<br> Something went wrong: ' . $conn->error . ' <br><br>';
         $_SESSION['message_type'] = 'danger';
         header("Location: http://localhost:8080/GitHub/StVincent_v2.0/admin/?settings");
         echo json_encode(array('status' => 0));

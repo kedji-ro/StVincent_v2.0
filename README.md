@@ -21,4 +21,5 @@ Changes:
 #2022-10-27 v2.2
 Changes:
 - Added notification validations
-- Added redirectoin validations
+- Added redirection validations
+- Added Create user validations

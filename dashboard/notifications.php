@@ -4,7 +4,7 @@
 
 include 'C:\xampp\htdocs\GitHub\StVincent_v2.0\includes\config.php';
 
-$query = "SELECT * FROM `tb_notifications` WHERE _user_id =". $_SESSION['st_userid'];
+$query = "SELECT * FROM `tb_notifications` WHERE _user_id =". $_SESSION['st_userid']." ORDER BY `_timestamp` DESC LIMIT 5";
 $result = $conn->query($query);
 
 while ($row = $result->fetch_array()) {

@@ -1,8 +1,5 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-include 'C:\xampp\htdocs\GitHub\StVincent_v2.0\includes\config.php';
+include '../includes/config.php';
 ?>
 
 <!doctype html>
@@ -26,9 +23,16 @@ include 'C:\xampp\htdocs\GitHub\StVincent_v2.0\includes\config.php';
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
                 },
-                contentHeight: 600
+                height: 600,
+                handleWindowResize: true,
+
+
+                events: [{
+
+                }]
             });
             calendar.render();
+
         });
     </script>
 
@@ -64,10 +68,11 @@ include 'C:\xampp\htdocs\GitHub\StVincent_v2.0\includes\config.php';
     <link href="../assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" /> -->
 </head>
 
-<body>
+<body onload="toast.showNotification('pe-7s-info','<?php echo $_SESSION['message']; ?>','<?php echo $_SESSION['message_type']; ?>');">
+<?php unset($_SESSION['message']); ?>
 
     <div class="wrapper">
-        <div class="sidebar" data-color="black" data-image="assets/img/sidebar-5.jpg">
+        <div class="sidebar" data-color="black" data-image="assets/img/sidebar-4.jpg">
 
             <!-- 
             Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
@@ -86,7 +91,7 @@ include 'C:\xampp\htdocs\GitHub\StVincent_v2.0\includes\config.php';
                                                             echo 'active';
                                                         } ?>">
                         <a class="nav-link" href="?event-activity">
-                            <i class="pe-7s-date"></i>
+                            <i class="fa fa-calendar"></i>
                             <p>Event Activity</p>
                         </a>
                     </li>
@@ -94,7 +99,7 @@ include 'C:\xampp\htdocs\GitHub\StVincent_v2.0\includes\config.php';
                                                                 echo 'active';
                                                             } ?>">
                         <a class="nav-link" href="?donation">
-                            <i class="pe-7s-cash"></i>
+                            <i class="fa fa-money"></i>
                             <p>My Donations</p>
                         </a>
                     </li>
@@ -102,7 +107,7 @@ include 'C:\xampp\htdocs\GitHub\StVincent_v2.0\includes\config.php';
                                                                 echo 'active';
                                                             } ?>">
                         <a class="nav-link" href="?settings">
-                            <i class="pe-7s-settings"></i>
+                            <i class="fa fa-cogs"></i>
                             <p>Settings</p>
                         </a>
                     </li>
@@ -135,16 +140,12 @@ include 'C:\xampp\htdocs\GitHub\StVincent_v2.0\includes\config.php';
                                 </a>
                                 <ul class="container dropdown-menu text-wrap" style="width: 300px;">
                                     <?php include 'notifications.php' ?>
-                                    <!-- <li><a href="#">Notification 1</a></li>
-                                    <li><a href="#">Notification 2</a></li>
-                                    <li><a href="#">Notification 3</a></li>
-                                    <li><a href="#">Notification 4</a></li>
-                                    <li><a href="#">Another notification</a></li> -->
                                 </ul>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <p>
+                                        <i class="fa fa-user"></i>
                                         <?php
                                         if (isset($_SESSION['st_fullname'])) {
                                             echo $_SESSION['st_fullname'];
@@ -170,13 +171,13 @@ include 'C:\xampp\htdocs\GitHub\StVincent_v2.0\includes\config.php';
             <!-- Load page content based on what item is clicked on the left navigation bar -->
             <?php
             if (isset($_GET['event-activity']) != null) {
-                include(__DIR__ . '\pages\event-activity.php');
+                include('pages/event-activity.php');
             }
             if (isset($_GET['donation']) != null) {
-                include(__DIR__ . '\pages\donation.php');
+                include('pages/donation.php');
             }
             if (isset($_GET['settings']) != null) {
-                include(__DIR__ . '\pages\settings.php');
+                include('pages/settings.php');
             }
             ?>
 
@@ -189,7 +190,7 @@ include 'C:\xampp\htdocs\GitHub\StVincent_v2.0\includes\config.php';
             </div>
         </div>
 
-        <?php include(__DIR__ . '\pages\modals.php'); ?>
+        <?php include('modals.php'); ?>
 
 </body>
 
@@ -217,97 +218,9 @@ include 'C:\xampp\htdocs\GitHub\StVincent_v2.0\includes\config.php';
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales-all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
 
-<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
-<script src="../assets/js/demo.js"></script>
+<!-- Pop Up Alerts -->
+<script src="toast.js"></script>
 
 <!---------------------- Functionality scripts ---------------------->
-<script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth',
-            initialDate: '2022-10-20',
-            headerToolbar: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay'
-            },
-            events: [{
-                    title: 'EVENT TEST',
-                    start: '2022-10-20'
-                }
-                // },
-                // {
-                //     title: 'Long Event',
-                //     start: '2022-08-07',
-                //     end: '2022-08-10'
-                // },
-                // {
-                //     groupId: '999',
-                //     title: 'Repeating Event',
-                //     start: '2022-08-09T16:00:00'
-                // },
-                // {
-                //     groupId: '999',
-                //     title: 'Repeating Event',
-                //     start: '2022-08-16T16:00:00'
-                // },
-                // {
-                //     title: 'Conference',
-                //     start: '2022-08-11',
-                //     end: '2022-08-13'
-                // },
-                // {
-                //     title: 'Meeting',
-                //     start: '2022-08-12T10:30:00',
-                //     end: '2022-08-12T12:30:00'
-                // },
-                // {
-                //     title: 'Lunch',
-                //     start: '2022-08-12T12:00:00'
-                // },
-                // {
-                //     title: 'Meeting',
-                //     start: '2022-08-12T14:30:00'
-                // },
-                // {
-                //     title: 'Birthday Party',
-                //     start: '2022-08-13T07:00:00'
-                // },
-                // {
-                //     title: 'Click for Google',
-                //     url: 'http://google.com/',
-                //     start: '2022-08-28'
-                // }
-            ]
-        });
-
-        calendar.render();
-    });
-    // $(document).ready(function() {
-
-    //    // demo.initChartist();
-
-    //     $.notify({
-    //         icon: 'pe-7s-gift',
-    //         message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
-
-    //     }, {
-    //         type: 'info',
-    //         timer: 4000
-    //     });
-
-    // });
-
-    // $(document).ready(function() {
-    //     demo.initDashboardPageCharts();
-
-    //     demo.showNotification();
-
-    // });
-
-    // document.getElementById("navEvent").addEventListener("click", demo.showNotification());
-</script>
 
 </html>

@@ -1,10 +1,6 @@
 <?php
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
-include 'C:\xampp\htdocs\GitHub\StVincent_v2.0\includes\config.php';
+include '../config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -24,7 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$_SESSION['st_email'] = $email; 
 		$_SESSION['st_address'] = $address;  
         
-        header ("Location: http://localhost:8080/GitHub/StVincent_v2.0/dashboard/?settings");
+		if ($_SESSION['st_role'] == 'admin') {
+			header ("Location: http://localhost:8080/GitHub/StVincent_v2.0/dashboard/admin/?settings");
+		} else {
+			header ("Location: http://localhost:8080/GitHub/StVincent_v2.0/dashboard/?settings");	
+		}
+        echo $_SESSION['st_role'];
 		//echo json_encode(array('status'=>1)); 
 	}
 	else{

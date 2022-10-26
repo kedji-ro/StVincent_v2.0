@@ -1,37 +1,25 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
 
-include 'C:\xampp\htdocs\GitHub\StVincent_v2.0\includes\config.php';
+include '../config.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = mysqli_real_escape_string($conn, $_SESSION['st_userid']);
-    $payment ='Cash';
+    $payment =mysqli_real_escape_string($conn, $_POST['p_type']);
     $remarks = mysqli_real_escape_string($conn, $_POST['remarks']);
-    $amount_cash = 1000.00;
-    $bankname = 'Metrobank';
-    $checkno = '8768';
-    $amount_check = 9989.5;
-    $datetimenow = date("Y/m/d h:i:sa");
-    //$getamount = ($payment == "C") ? $amount_cash : $amount_check;
-    //$hasFile = (isset($_FILES['file'])) ? true : false;
-    $name = mysqli_real_escape_string($conn, $_SESSION['st_fullname']);
-   // $extension = "";
-    //$new_name = "";
-   // $location = "../assets/uploadfile/";
+    $amount_cash = mysqli_real_escape_string($conn, $_POST['csh_amount']);
+    $bankname = mysqli_real_escape_string($conn, $_POST['bnk']);
+    $checkno = mysqli_real_escape_string($conn, $_POST['check_no']);;
+    $amount_check = mysqli_real_escape_string($conn, $_POST['chk_amount']);
+    $d_img = mysqli_real_escape_string($conn, $_POST['d_img']);
+    $datetimenow = date("Y-m-d h:i:sa");
 
-    // if ($hasFile) {
-    //     $extension = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
-    //     $new_name = $name . '_' . time() . '.' . $extension;
-    //     move_uploaded_file($_FILES["file"]["tmp_name"], $location . '' . $new_name);
-    // }
+    $name = mysqli_real_escape_string($conn, $_SESSION['st_fullname']);
 
     $query_insertNotif = "INSERT INTO `tb_notifications`(`_user_id`,`_title`, `_description`, `_timestamp`,`_read`) 
 	VALUES ('".$user."','Donation Sent','Made a donation', CURRENT_TIMESTAMP(),false);";
 
     $query_addMyDonate = "INSERT INTO `tb_donation`(`_userID`,`_fullname`, `_mop`, `_amount`, 
-	`_bankname`, `_checkno`, `_remarks`, `_date`) 
+	`_bankname`, `_checkno`, `_remarks`, `_date`, `_type`) 
 	VALUES ('".$user."','".$name."','" . $payment . "','" . $amount_cash . "','" . $bankname . "','" . $checkno . "','" . $remarks . "','" . $datetimenow . "');";
     
     if (mysqli_query($conn, $query_addMyDonate)) {
@@ -49,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     } else {
         echo json_encode(array('status' => 0));
+        $conn->error;
     }
     $conn->close();
 }

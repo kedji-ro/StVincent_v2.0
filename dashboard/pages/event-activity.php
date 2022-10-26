@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content animated fadeIn">
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">

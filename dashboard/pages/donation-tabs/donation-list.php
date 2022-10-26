@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content animated fadeIn">
     <div class="row" style="margin: 10px 0px 10px 0px;">
         <div class="col-sm-3"><input type="text" class="form-control" placeholder="Search" value=""></div>
         <div class="col-sm-5"></div>
@@ -17,28 +17,22 @@
                 </thead>
                 <tbody>
                     <?php
-                    include 'C:\xampp\htdocs\GitHub\StVincent_v2.0\includes\config.php';
-
-                    $query = "SELECT * FROM `tb_donation_lists` INNER JOIN `tb_donation` ON (tb_donation_lists._userID = tb_donation._userID) where tb_donation_lists._userID =". $_SESSION['st_userid'];
+                    $query = "SELECT * FROM `tb_donation` where _userID =" . $_SESSION['st_userid'];
                     $result = $conn->query($query);
 
-                    while ($row = $result->fetch_array()) {
-                        echo '<tr>
-                                    <td>'.$row['_donationID'].'</td>
-                                    <td>'.$row['_mop'].'</td>
-                                    <td>'.$row['_date'].'</td>
-                                    <td>'.$row['_status'].'</td>
-                                    <td><button class="btn btn-primary btn-sm"><i class="pe-7s-gift"></i></button></td>
-                            </tr>';
-                    }
-                    ?>
-                    <!-- <tr>
-                        <td>1</td>
-                        <td>Dakota Rice</td>
-                        <td>$36,738</td>
-                        <td>Niger</td>
-                        <td><button class="btn btn-primary btn-sm"><i class="pe-7s-gift"></i></button></td>
-                    </tr> -->
+                    while ($row = $result->fetch_array()) { ?>
+                        <tr>
+                            <td><?php echo $row['_id']; ?></td>
+                            <td><?php echo $row['_mop']; ?></td>
+                            <td><?php echo $row['_date']; ?></td>
+                            <?php if ($row['_status'] == '1') { ?>
+                                <td><i class="fa fa-circle text-success"></i> <?php echo 'Recieved'; ?></td>
+                            <?php } else { ?>
+                                <td><i class="fa fa-circle text-warning"></i> <?php echo 'For Approval'; ?></td>
+                            <?php } ?>
+                            <td><button class="btn btn-success btn-fill btn-sm"><i class="pe-7s-look fa-lg"></i></button></td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>

@@ -90,6 +90,7 @@
     <section class="inner-page">
       <div class="container">
         <div class="content">
+          <?php include 'includes/alert-message.php'; ?>
           <div class="row text-center mt-3">
             <h2>You can make a difference</h2>
           </div><br>
@@ -98,16 +99,16 @@
               <br>
               <img class="mt-3" src="home-assets/img/donate.jpg" alt="" style="max-width: 100%; max-height: 100%; border-radius: 5px;">
             </div>
-            <div class="col-md-4">
-              <form action="../includes/actions/add-donation.php" method="POST">
+            <div class="col-md-4" id="don">
+              <form action="includes/actions/add-donation.php" method="POST" id="d_form" enctype="multipart/form-data">
                 <div class="row">
                   <div class="col-md-10">
                     <div class="form-group mt-3">
                       <label>Type<span style="color:red;"> *</span></label>
-                      <select class="form-control form-select" style="border-radius:0px;">
+                      <select id="d_type" name="d_type" class="form-control form-select" style="border-radius:0px;">
                         <option selected>Select</option>
-                        <option value="1">Cash</option>
-                        <option value="2">Check</option>
+                        <option value="Cash">Cash</option>
+                        <option value="Check">Check</option>
                       </select>
                     </div>
                   </div>
@@ -115,8 +116,35 @@
                 <div class="row">
                   <div class="col-md-10">
                     <div class="form-group mt-3">
+                      <h6 id="chk_bankin" style="font-weight: bold;">Bank Information</h6>
+                      <label id="l_amt">Amount <span style="font-style: italic;">(Minimum: 100PHP)</span><span style="color:red;"> *</span></label>
+                      <input id="d_amt" name="d_amt" class="form-control" style="border-radius:0px;" type="number" min="100">
+                    </div>
+                  </div>
+                </div>
+                <div id="chk_details">
+                  <div class="row">
+                    <div class="col-md-10">
+                      <div class="form-group mt-3">
+                        <label>Bank Name</label>
+                        <input id="chk_bank" name="chk_bank" class="form-control" style="border-radius:0px;" type="text">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-10">
+                      <div class="form-group mt-3">
+                        <label>Check Refence No.</label>
+                        <input id="chk_checkref" name="chk_checkref" class="form-control" style="border-radius:0px;" type="text">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-10">
+                    <div class="form-group mt-3">
                       <label>Remarks</label>
-                      <textarea name="remarks" rows="5" class="form-control" placeholder="" value="" style="border-radius:0px;"></textarea>
+                      <textarea id="ad_remarks" name="ad_remarks" rows="5" class="form-control" placeholder="" value="" style="border-radius:0px;"></textarea>
                     </div>
                   </div>
                 </div>
@@ -124,13 +152,13 @@
                   <div class="col-md-10">
                     <div class="form-group mt-3">
                       <label>Upload File <span style="font-style: italic;">(JPEG/JPG/PNG)</span></label>
-                      <input type="file" class="form-control" placeholder="Company" value="09xx" style="border-radius:0px;">
+                      <input type="file" id="ad_file" name="ad_file" class="form-control" style="border-radius:0px;" accept="image/*">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-6 mt-3">
-                    <button type="submit" class="btn btn-info btn-fill pull-left" style="border-radius:0px;">Confirm Donation</button>
+                    <button id="a_donation" name="a_donation" type="submit" class="btn btn-info btn-fill pull-left" style="border-radius:0px;">Confirm Donation</button>
                     <div class="clearfix"></div>
                   </div>
                 </div>
@@ -184,5 +212,42 @@
   <script src="home-assets/js/main.js"></script>
 
 </body>
+
+<script>
+  var type = document.getElementById("d_type");
+
+  var bankin = document.getElementById("chk_bankin");
+  var l_amount = document.getElementById("l_amt");
+  var amount = document.getElementById("d_amt");
+
+  var bank_details = document.getElementById("chk_details");
+
+  bankin.style.display = "none";
+  l_amount.style.display = "none";
+  amount.style.display = "none";
+  bank_details.style.display = "none";
+
+  document.getElementById("d_type").addEventListener("change", function() {
+    if (type.value == 'Cash') {
+      l_amount.style.display = "block";
+      amount.style.display = "block";
+
+      bankin.style.display = "none";
+      bank_details.style.display = "none";
+    } else if (type.value == 'Check') {
+      l_amount.style.display = "block";
+      amount.style.display = "block";
+
+      bankin.style.display = "block";
+      bank_details.style.display = "block";
+    } else {
+      l_amount.style.display = "none";
+      amount.style.display = "none";
+
+      bankin.style.display = "none";
+      bank_details.style.display = "none";
+    }
+  });
+</script>
 
 </html>

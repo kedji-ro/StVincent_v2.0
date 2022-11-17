@@ -18,7 +18,7 @@ editor then use the following list of modal identifier as references:
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-body">
-                <form action="form-actions.php" method="POST" oninput='sRePass.setCustomValidity(cRePass.value != cNewPass.value ? "Passwords do not match." : "")'>
+                <form action="form-actions.php" method="POST">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
@@ -64,20 +64,23 @@ editor then use the following list of modal identifier as references:
                 Add Patient
             </div>
             <div class="modal-body">
-                <div class="header text-center">
-                    <p>ST. VINCENT STRAMBI HOME FOR THE AGED, INC.
-                        <br>Prk. Mangga Brgy. City Heights
-                        <br>General Santos City
-                        <br>Tel. No. 552-7500
-                    </p>
-                    <div class="pull-right">
-                        Date of Entry <span style="color: red;">*</span>
-                        <input type="date" class="form-control" name="p_dateOfEntry" id="p_dateOfEntry">
-                    </div>
-                    <br><br><br><br>
-                    <p style="font-size: 14pt;">GENERAL INTAKE SHEET</p><br>
-                </div>
                 <form action="form-actions.php" method="POST">
+                    <div class="header text-center">
+                        <p>ST. VINCENT STRAMBI HOME FOR THE AGED, INC.
+                            <br>Prk. Mangga Brgy. City Heights
+                            <br>General Santos City
+                            <br>Tel. No. 552-7500
+                        </p>
+
+                        <div class="pull-right">
+                            Date of Entry <span style="color: red;">*</span>
+                            <input type="date" class="form-control" name="p_dateOfEntry" id="p_dateOfEntry">
+                        </div>
+                        <br><br><br><br>
+                        <p style="font-size: 14pt;">GENERAL INTAKE SHEET</p><br>
+                    </div>
+                    <h4>Personal Information</h4>
+
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
@@ -111,7 +114,13 @@ editor then use the following list of modal identifier as references:
                                 <input type="date" name="p_dob" id="p_dob" class="form-control" placeholder="" value="">
                             </div>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Age<span style="color:red;"> *</span></label>
+                                <input type="text" name="p_age" id="p_age" class="form-control" placeholder="" value="">
+                            </div>
+                        </div>
+                        <div class="col-md-7">
                             <div class="form-group">
                                 <label>Place of Birth<span style="color:red;"> *</span></label>
                                 <input type="text" name="p_pob" id="p_pob" class="form-control" placeholder="" value="">
@@ -141,16 +150,10 @@ editor then use the following list of modal identifier as references:
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label>Name of Spouse</label>
                                 <input type="text" name="p_spouse" id="p_spouse" class="form-control" placeholder="" value="">
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label>Age</label>
-                                <input type="text" name="p_age" id="p_age" class="form-control" placeholder="" value="">
                             </div>
                         </div>
                     </div>
@@ -158,7 +161,7 @@ editor then use the following list of modal identifier as references:
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>If Applicant is disabled, indicate nature of disability</label>
-                                <input type="text" name="p_disability" id="p_disability" class="form-control" placeholder="" value="">
+                                <input type="text" name="p_disability" id="p_disability" class="form-control" placeholder="e.g. Deaf, Blind" value="">
                             </div>
                         </div>
                     </div>
@@ -166,7 +169,7 @@ editor then use the following list of modal identifier as references:
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Skills/Interests</label>
-                                <input type="text" name="p_skills" id="p_skills" class="form-control" placeholder="" value="">
+                                <input type="text" name="p_skills" id="p_skills" class="form-control" placeholder="e.g. Arts, Singing, Dancing" value="">
                             </div>
                         </div>
                     </div>
@@ -180,7 +183,8 @@ editor then use the following list of modal identifier as references:
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group">
+                            <div class="form-group"><br>
+                                <h4>Referral Information</h4>
                                 <label>Source of Referral</label>
                                 <input type="text" name="p_referral" id="p_referral" class="form-control" placeholder="" value="">
                             </div>
@@ -202,7 +206,7 @@ editor then use the following list of modal identifier as references:
                             </div>
                         </div>
                     </div><br>
-                    <p style="font-size: 14pt;">FAMILY COMPOSITION</p>
+                    <!-- <p style="font-size: 14pt;">FAMILY COMPOSITION</p>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -259,7 +263,7 @@ editor then use the following list of modal identifier as references:
                         <div class="col-md-2">
                             <button type="button" name="p_add_fam" id="p_add_fam" class="btn btn-warning btn-fill">Add as Family</button>
                         </div>
-                    </div><br>
+                    </div><br> -->
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -622,3 +626,483 @@ editor then use the following list of modal identifier as references:
     </div>
 </div>
 <!--  End Modal -->
+
+<!-- Archive Patient Modal -->
+<div class="modal fade modal-mini modal-primary" id="archivePatient" tabindex="-1" role="dialog" aria-labelledby="archivePatient" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center" style="font-weight: bold;">
+                Archive Patient Info
+            </div>
+            <div class="modal-body">
+                <form action="form-actions.php" method="POST">
+                    <input type="hidden" name="p_id" id="p_id" class="form-control" placeholder="" value="">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Reason: <span style="color:red;"> *</span></label>
+                                <select name="arc_reason" id="arc_reason" class="form-control form-select">
+                                    <option selected>Select</option>
+                                    <option value="1">Death</option>
+                                    <option value="0">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" id="death_date">
+                            <div class="form-group">
+                                <label>Date Died: <span style="color:red;"> *</span></label>
+                                <input type="date" name="date_died" id="date_died" class="form-control" placeholder="" value="">
+                            </div>
+                        </div>
+                        <div class="col-md-12" id="out_date">
+                            <div class="form-group">
+                                <label>Date Left: <span style="color:red;"> *</span></label>
+                                <input type="date" name="date_out" id="date_out" class="form-control" placeholder="" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12" id="cod_text">
+                            <div class="form-group">
+                                <label>Cause of death: <span style="color:red;"> *</span></label>
+                                <textarea id="cod" name="cod" rows="3" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12" id="other_text">
+                            <div class="form-group">
+                                <label>Please specify: <span style="color:red;"> *</span></label>
+                                <textarea id="other" name="other" rows="3" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" name="p_archive" id="p_archive" class="btn btn-info btn-fill">Confirm</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--  End Modal -->
+
+<!-- View/Edit Patient Info Modal -->
+<div class="modal fade modal modal-primary" id="viewPatientInfo" tabindex="-1" role="dialog" aria-labelledby="viewPatientInfo" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header justify-content-center" style="font-weight: bold;">
+                View/Edit Patient Information
+            </div>
+            <div class="modal-body">
+                <div class="header">
+                    <button type="button" class="btn btn-primary btn-fill btn-sm pull-right" id="infoEdit"><i class="pe-7s-pen fa-lg"></i> Edit</button>
+                    <button type="button" class="btn btn-danger btn-fill btn-sm pull-right" id="editCancel"><i class="pe-7s-close fa-lg"></i> Cancel</button>
+                    <h4>Personal Information</h4>
+                </div>
+                <form action="form-actions.php" method="POST" id="editPatientInfo">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Surname<span style="color:red;"> *</span></label>
+                                <input type="text" name="v_surname" id="v_surname" class="form-control" placeholder="" value="">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Given Name <span style="color: red;">*</span></label>
+                                <input type="text" name="v_givenname" id="v_givenname" class="form-control" placeholder="" value="">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Middle Name</label>
+                                <input type="text" name="v_midname" id="v_midname" class="form-control" placeholder="" value="">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Nickname</label>
+                                <input type="text" name="v_nickname" id="v_nickname" class="form-control" placeholder="" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Date of Birth<span style="color:red;"> *</span></label>
+                                <input type="date" name="v_dob" id="v_dob" class="form-control" placeholder="" value="">
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <label>Place of Birth<span style="color:red;"> *</span></label>
+                                <input type="text" name="v_pob" id="v_pob" class="form-control" placeholder="" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Address<span style="color:red;"> *</span></label>
+                                <textarea rows="3" name="v_address" id="v_address" class="form-control" placeholder="" value=""></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Religion</label>
+                                <input type="text" name="v_religion" id="v_religion" class="form-control" placeholder="" value="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Educational Attainment</label>
+                                <input type="text" name="v_edatt" id="v_edatt" class="form-control" placeholder="" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label>Name of Spouse</label>
+                                <input type="text" name="v_spouse" id="v_spouse" class="form-control" placeholder="" value="">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Age</label>
+                                <input type="text" name="v_age" id="v_age" class="form-control" placeholder="" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>If Applicant is disabled, indicate nature of disability</label>
+                                <input type="text" name="v_disability" id="v_disability" class="form-control" placeholder="" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Skills/Interests</label>
+                                <input type="text" name="v_skills" id="v_skills" class="form-control" placeholder="" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Name of Nearest Relative</label>
+                                <input type="text" name="v_nearest_rel" id="v_nearest_rel" class="form-control" placeholder="" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group"><br>
+                                <h4>Referral Information</h4>
+                                <label>Source of Referral</label>
+                                <input type="text" name="v_referral" id="v_referral" class="form-control" placeholder="" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input type="text" name="v_ref_address" id="v_ref_address" class="form-control" placeholder="" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Reason/s</label>
+                                <input type="text" name="v_reasons" id="v_reasons" class="form-control" placeholder="" value="">
+                            </div>
+                        </div>
+                    </div><br>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" name="add_patient" id="add_patient" class="btn btn-info btn-fill" disabled>Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--  End Modal -->
+
+<!-- Approve Event Request Modal -->
+<div class="modal fade modal-mini modal-primary" id="approveEvent" tabindex="-1" role="dialog" aria-labelledby="approveEvent" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form action="form-actions.php" method="POST">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="hidden" name="e_id" id="e_id" class="form-control">
+                                <input type="hidden" name="u_id" id="u_id" class="form-control">
+                                <input type="hidden" name="e_t" id="e_t" class="form-control">
+                                <h5>Approve <span id="e_title" style="font-weight: bold;"></span>?</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-info btn-fill btn-sm" id="approve_event" name="approve_event">Confirm</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--  End Modal -->
+
+<!-- Deactivate Modal -->
+<div class="modal fade modal-mini modal-primary" id="deactUser" tabindex="-1" role="dialog" aria-labelledby="deactUser" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form action="form-actions.php" method="POST">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <!-- <input type="hidden" name="e_id" id="e_id" class="form-control"> -->
+                                <input type="hidden" name="us_id" id="us_id" class="form-control">
+                                <!-- <input type="hidden" name="e_t" id="e_t" class="form-control"> -->
+                                <h5>Deactivate <span id="u_name" style="font-weight: bold;"></span>?</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-info btn-fill btn-sm" id="deact_account" name="deact_account">Confirm</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--  End Modal -->
+
+<!-- Activate Modal -->
+<div class="modal fade modal-mini modal-primary" id="reactUser" tabindex="-1" role="dialog" aria-labelledby="reactUser" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form action="form-actions.php" method="POST">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <!-- <input type="hidden" name="e_id" id="e_id" class="form-control"> -->
+                                <input type="hidden" name="au_id" id="au_id" class="form-control">
+                                <!-- <input type="hidden" name="e_t" id="e_t" class="form-control"> -->
+                                <h5>Activate <span id="au_name" style="font-weight: bold;"></span>?</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-info btn-fill btn-sm" id="act_account" name="act_account">Confirm</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--  End Modal -->
+
+<!-- Receieve Donation Modal -->
+<div class="modal fade modal-mini modal-primary" id="recieveDonation" tabindex="-1" role="dialog" aria-labelledby="recieveDonation" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form action="form-actions.php" method="POST">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="hidden" name="d_id" id="d_id" class="form-control">
+                                <input type="hidden" name="du_id" id="du_id" class="form-control">
+                                <h5>Recieve Dononation?</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-info btn-fill btn-sm" id="recieve_donation" name="recieve_donation">Confirm</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--  End Modal -->
+
+<!-- View Donation Modal -->
+<div class="modal fade modal-mini modal-primary" id="viewDonation" tabindex="-1" role="dialog" aria-labelledby="viewDonation" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Donation No. <span id="donation_no"></span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <img src="" alt="" id="dm_pic" name="dm_pic" style="height: 100%; width: 100%;">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Type</label>
+                            <input id="dm_type" name="dm_type" type="text" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Bank Name</label>
+                            <input id="dm_bank" name="dm_bank" type="text" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Check No.</label>
+                            <input id="dm_checkno" name="dm_checkno" type="text" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label id="dml_itemno">Item Ref ID</label>
+                            <input id="dm_itemno" name="dm_itemno" type="text" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>QTY/Amount</label>
+                            <input id="dm_qtyam" name="dm_qtyam" type="text" class="form-control" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Donor Name</label>
+                            <input id="dm_name" name="dm_name" type="text" class="form-control" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Mobile</label>
+                            <input id="dm_phone" name="dm_phone" type="text" class="form-control" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input id="dm_address" name="dm_address" type="text" class="form-control" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Date Sent</label>
+                            <input id="dm_dsent" name="dm_dsent" type="text" class="form-control" readonly>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Date Recieved</label>
+                            <input id="dm_drec" name="dm_drec" type="text" class="form-control" readonly>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Remarks</label>
+                            <textarea id="dm_remarks" name="dm_remarks" rows="3" class="form-control" readonly></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <!-- <button type="button" id="dm_print" name="dm_print" class="btn btn-info btn-fill"><i class="pe-7s-print fa-lg"></i> Print</button> -->
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>
+
+<script>
+    var reason = document.getElementById("arc_reason");
+
+    var death_d = document.getElementById("death_date");
+    var cause_t = document.getElementById("cod_text");
+
+    var out_d = document.getElementById("out_date");
+    var other_t = document.getElementById("other_text");
+
+    death_d.style.display = "None";
+    cause_t.style.display = "None";
+    out_d.style.display = "None";
+    other_t.style.display = "None";
+
+    document.getElementById("arc_reason").addEventListener("change", function() {
+        if (reason.value == '1') {
+            death_d.style.display = "Block";
+            cause_t.style.display = "Block";
+            out_d.style.display = "None";
+            other_t.style.display = "None";
+        } else if (reason.value == '0') {
+            death_d.style.display = "None";
+            cause_t.style.display = "None";
+            out_d.style.display = "Block";
+            other_t.style.display = "Block";
+        } else {
+            death_d.style.display = "None";
+            cause_t.style.display = "None";
+            out_d.style.display = "None";
+            other_t.style.display = "None";
+        }
+    });
+
+    var eCancel = document.getElementById("editCancel");
+    var iEdit = document.getElementById("infoEdit");
+
+    eCancel.style.display = "None";
+
+    $("#viewPatientInfo :input").attr("readonly", true);
+
+    document.getElementById("infoEdit").addEventListener("click", function() {
+        if (eCancel.style.display = "None") {
+            iEdit.style.display = "None";
+            eCancel.style.display = "Block";
+            $("#viewPatientInfo :input").attr("readonly", false);
+        }
+
+        document.getElementById("editCancel").addEventListener("click", function() {
+            if (eCancel.style.display = "None") {
+                iEdit.style.display = "Block";
+                eCancel.style.display = "None";
+                $("#viewPatientInfo :input").attr("readonly", true);
+            }
+        });
+    });
+
+</script>

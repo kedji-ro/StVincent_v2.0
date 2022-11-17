@@ -35,6 +35,13 @@ if (session_status() !== PHP_SESSION_NONE) {
 
 </head>
 
+<?php
+// if (session_status() == PHP_SESSION_ACTIVE) {
+//   echo '<script> Console.log("Session is active"); </script>';
+//   session_destroy();
+// }
+?>
+
 <body>
 
   <!-- ======= Header ======= -->
@@ -89,7 +96,7 @@ if (session_status() !== PHP_SESSION_NONE) {
                     <input type="password" name="pass" class="form-control " id="pass" style="border-radius:0px;" placeholder="Password" required autocomplete="current-password">
                   </div>
                   <div class="form-group mt-3 text-center">
-                    <button class="btn btn-danger btn-lg" type="submit" style="border-radius:0px;">SIGN IN</button>
+                    <button id="u_login" name="u_login" class="btn btn-danger btn-lg" type="submit" style="border-radius:0px;">SIGN IN</button>
                   </div>
                 </div>
                 <div class="col-sm-2">
@@ -248,7 +255,7 @@ if (session_status() !== PHP_SESSION_NONE) {
                   <h4><a href="#">CORE PROGRAM AND SERVICES</a></h4>
                   <p>Core Program refers the primary interventions that are being facilitated in the healing and move, process of a particular client.
 
-St. Vincent Strambi Home for the Aged, Inc. as it continues to facilitate the development and implementation of helping interventions for its clientele identifies it main program with corresponding services. These are Residential Care Program.</p>
+                    St. Vincent Strambi Home for the Aged, Inc. as it continues to facilitate the development and implementation of helping interventions for its clientele identifies it main program with corresponding services. These are Residential Care Program.</p>
                 </div>
               </div>
 
@@ -391,5 +398,8 @@ St. Vincent Strambi Home for the Aged, Inc. as it continues to facilitate the de
   <script src="home-assets/js/functions.js"></script>
 
 </body>
+<script>
+  window.history.replaceState({}, document.title, "?" + "");
+</script>
 
 </html>

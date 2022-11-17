@@ -11,6 +11,7 @@
                         <li class="active"><a href="#donationList" data-toggle="tab">Donations</a></li>
                         <li><a href="#sendDonation" data-toggle="tab">Send Donation</a></li>
                         <li><a href="#beVolunteer" data-toggle="tab">Be a Volunteer</a></li>
+                        <li><a href="#transHistory" data-toggle="tab">Transaction History</a></li>
                     </ul>
 
                     <!-- Tab Content -->
@@ -34,6 +35,13 @@
                         <div class="tab-pane" id="beVolunteer">
                             <?php
                             include('../dashboard/pages/donation-tabs/donation-volunteer.php');
+                            ?>
+                        </div>
+
+                        <!-- Transaction History Page Directory -->
+                        <div class="tab-pane" id="transHistory">
+                            <?php
+                            include('../dashboard/pages/donation-tabs/transaction-history.php');
                             ?>
                         </div>
 

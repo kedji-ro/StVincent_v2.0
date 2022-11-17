@@ -1,12 +1,12 @@
 <div class="content animated fadeIn">
     <div class="row">
         <div class="col-md-7">
-            <form action="../includes/actions/add-donation.php" method="POST">
+            <form action="../includes/actions/add-donation.php" method="POST" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-10">
                         <div class="form-group">
                             <label>Type<span style="color:red;"> *</span></label>
-                            <select name="d_type" id="d_type" class="form-control form-select" onchange="togglePayment()">
+                            <select name="d_type" id="d_type" class="form-control form-select">
                                 <option selected value="0">Select</option>
                                 <option value="M">Monetary</option>
                                 <option value="G">Goods</option>
@@ -14,19 +14,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="row" id="payment" hidden>
+                <div class="row" id="payment">
                     <div class="col-md-10">
                         <div class="form-group">
                             <label>Payment<span style="color:red;"> *</span></label>
-                            <select name="p_type" id="p_type" class="form-control form-select" onchange="toggleBankInfo()">
+                            <select name="p_type" id="p_type" class="form-control form-select">
                                 <option selected>Select</option>
-                                <option value="1">Cash</option>
-                                <option value="2">Check</option>
+                                <option value="Cash">Cash</option>
+                                <option value="Check">Check</option>
                             </select>
                         </div>
                     </div>
                 </div>
-                <div class="row" id="amount" hidden>
+                <div class="row" id="amount">
                     <div class="col-md-10">
                         <div class="form-group">
                             <label>Amount (Minimun: 100PHP)<span style="color:red;"> *</span></label>
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="bankInfo" hidden>
+                <div id="bankInfo">
                     <div class="row">
                         <div class="col-md-5">
                             <div class="form-group">
@@ -71,13 +71,13 @@
                     <div class="col-md-10">
                         <div class="form-group">
                             <label>Upload</label>
-                            <input name="d_img" id="d_img" type="file" class="form-control" placeholder="" value="09xx">
+                            <input type="file" name="d_img" id="d_img" class="form-control" accept="image/*">
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <button type="submit" class="btn btn-info btn-fill pull-left">Confirm Donation</button>
+                        <button type="submit" id="u_donation" name="u_donation" class="btn btn-info btn-fill pull-left">Confirm Donation</button>
                         <div class="clearfix"></div>
                     </div>
                 </div>
@@ -104,33 +104,37 @@
 </div>
 
 <script>
-    function togglePayment() {
-        var x = document.getElementById("payment");
-        var y = document.getElementById("d_type");
+    var dtype = document.getElementById("d_type");
+    var ptype = document.getElementById("p_type");
 
-        if (y.value == 'M') {
-            x.style.display = "block";
-        } else if (y.value == 'G') {
-            x.style.display = "none";
+    var payment = document.getElementById("payment");
+    var bankin = document.getElementById("bankInfo");
+    var amount = document.getElementById("amount");
+
+    payment.style.display = "none";
+    bankin.style.display = "none";
+    amount.style.display = "none";
+
+    document.getElementById("d_type").addEventListener("change", function() {
+        if (dtype.value == 'M') {
+            payment.style.display = "block";
         } else {
-            x.style.display = "none";
+            payment.style.display = "none";
+            bankin.style.display = "none";
+            amount.style.display = "none";
         }
-    }
+    });
 
-    function toggleBankInfo() {
-        var x = document.getElementById("bankInfo");
-        var y = document.getElementById("amount");
-        var z = document.getElementById("p_type");
-
-        if (z.value == '2') {
-            x.style.display = "block";
-            y.style.display = "none";
-        } else if (z.value == '1') {
-            x.style.display = "none";
-            y.style.display = "block";
+    document.getElementById("p_type").addEventListener("change", function() {
+        if (ptype.value == 'Cash') {
+            amount.style.display = "block";
+            bankin.style.display = "none";
+        } else if (ptype.value == 'Check') {
+            amount.style.display = "none";
+            bankin.style.display = "block";
         } else {
-            x.style.display = "none";
-            y.style.display = "none";
+            amount.style.display = "none";
+            bankin.style.display = "none";
         }
-    }
+    });
 </script>

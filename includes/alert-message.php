@@ -32,8 +32,9 @@ if (session_status() === PHP_SESSION_NONE) {
         }
 
         else {
-            echo '<div class="alert alert-primary" role="alert">'.$_SESSION['message'].'</div>';
+            echo '<div class="alert alert-'.$_SESSION['alert-message'].'" role="alert">'.$_SESSION['message'].'</div>';
         }
 
         unset($_SESSION['message']);
     }
+?>

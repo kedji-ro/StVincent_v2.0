@@ -17,29 +17,6 @@ if ($_SESSION['st_role'] == 'admin') {
 
     <link href='fullcalendar/main.css' rel='stylesheet' />
     <script src='fullcalendar/main.js'></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth',
-                themeSystem: 'bootstrapFontAwesome',
-                headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
-                },
-                height: 600,
-                handleWindowResize: true,
-
-
-                events: [{
-
-                }]
-            });
-            calendar.render();
-
-        });
-    </script>
 
     <title>User Dashboard | St. Vincent Strambi C.P of Home for the Aged</title>
 
@@ -48,7 +25,6 @@ if ($_SESSION['st_role'] == 'admin') {
 
     <!-- Bootstrap core CSS     -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
-
 
     <!-- Animation library for notifications   -->
     <link href="assets/css/animate.min.css" rel="stylesheet" />
@@ -68,13 +44,20 @@ if ($_SESSION['st_role'] == 'admin') {
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
 
-    <!-- CSS Files -->
-    <!-- <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../assets/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" /> -->
+    <!-- jQuery -->
+    <script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
+
 </head>
 
-<body id="inBody" onload="toast.showNotification('pe-7s-info','<?php echo $_SESSION['message']; ?>','<?php echo $_SESSION['message_type']; ?>');">
-    <?php unset($_SESSION['message']); ?>
+<?php $x = '"'; ?>
+
+<body id="inBody" <?php if (isset($_SESSION['message'])) {
+                        echo "onload=" . $x . "toast.showNotification('pe-7s-info','" . $_SESSION['message'] . "','" . $_SESSION['message_type'] . "')" . $x;
+                    } ?>>
+    <?php
+    unset($_SESSION['message']);
+    unset($_SESSION['message_type']);
+    ?>
 
     <div class="wrapper">
         <div class="sidebar" data-color="black" data-image="assets/img/sidebar-5.jpg">
@@ -123,7 +106,7 @@ if ($_SESSION['st_role'] == 'admin') {
         <div class="main-panel">
             <!-- Header Navigation Bar -->
             <nav class="navbar navbar-default navbar-fixed">
-                <div class="container-fluid">
+                <div class="container-fluid" id="navA">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
                             <span class="sr-only">Toggle navigation</span>
@@ -137,14 +120,14 @@ if ($_SESSION['st_role'] == 'admin') {
                             <!-- Input <li> here to show on left side of header navbar-->
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li class="dropdown" id="notifBell">
+                            <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-bell"></i>
                                     <?php if ($_SESSION['st_notifs'] != 0) { ?>
                                         <span class="notification"> <?php echo $_SESSION['st_notifs']; ?> </span>
                                     <?php } ?>
                                 </a>
-                                <ul class="container dropdown-menu text-wrap" style="width: 300px; height: 400px;; overflow-y:scroll;">
+                                <ul class="container dropdown-menu text-wrap" style="width: 300px; height: 400px; overflow-y:scroll;">
                                     <?php include 'notifications.php'; ?>
                                 </ul>
                             </li>
@@ -162,7 +145,6 @@ if ($_SESSION['st_role'] == 'admin') {
                                         ?>
                                         <b class="caret"></b>
                                     </p>
-
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a data-toggle="modal" data-target="#changePassword" href="#">Change Password</a></li>
@@ -170,6 +152,7 @@ if ($_SESSION['st_role'] == 'admin') {
                                 </ul>
                             </li>
                         </ul>
+
                     </div>
                 </div>
             </nav>
@@ -202,7 +185,7 @@ if ($_SESSION['st_role'] == 'admin') {
 
 <!------------------------- Asset references ------------------------->
 <!--   Core JS Files   -->
-<script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script>
+<!-- <script src="assets/js/jquery.3.2.1.min.js" type="text/javascript"></script> -->
 <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
 
@@ -224,6 +207,10 @@ if ($_SESSION['st_role'] == 'admin') {
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales-all.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
 
+<script>
+    var scheds = $.parseJSON('<?= json_encode($sched_res) ?>')
+</script>
+
 <!-- Pop Up Alerts -->
 <script src="toast.js"></script>
 
@@ -238,10 +225,34 @@ if ($_SESSION['st_role'] == 'admin') {
                 "id": id
             },
             success: function(msg) {
-                $("#navB").load(location.href + " #navB");
+                $("#navA").load(location.href + " #navB");
             }
         });
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            initialDate: '<?php echo $date; ?>',
+            editable: true,
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,list'
+            },
+            events: scheds,
+            eventClick: function(event, jsEvent, view) {
+                //codes for event click
+            },
+            height: 600,
+            handleWindowResize: true
+
+        });
+
+        calendar.render();
+    });
 </script>
 
 </html>

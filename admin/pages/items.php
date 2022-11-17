@@ -6,7 +6,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="header" style="margin-bottom: 10px;">
-                        <h4 class="title">Manage Inventory</h4>
+                        <h4 class="title">Manage Inventory</h4><br>
+                        <button class="btn btn-info btn-fill btn-sm" data-toggle="modal" data-target="#addItem"><i class="pe-7s-plus fa-lg"></i> Add Item</button>
                     </div>
                     
                     <!-- Tab Group -->

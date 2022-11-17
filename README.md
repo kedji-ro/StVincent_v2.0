@@ -23,3 +23,25 @@ Changes:
 - Added notification validations
 - Added redirection validations
 - Added Create user validations
+
+#2022-11-03 v2.3
+Changes:
+- Added separate login for admin
+- Added Transaction History tab in User Dashboard > Donations
+
+#2022-11-10 v2.4
+Changes:
+- To be listed
+
+#2022-11-10 v2.4.1
+Changes:
+- To be listed
+
+#2022-11-15 v2.4.2
+Changes:
+- Events request approval
+- User accounts deactivate/reactivate
+
+#2022-11-17 v2.4.3
+Changes:
+- Image upload for donation

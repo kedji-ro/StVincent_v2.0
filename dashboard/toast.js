@@ -36,7 +36,6 @@ toast = {
     }, 17),
 
 	showNotification: function(icon, message, type){
-    	//color = Math.floor((Math.random() * 4) + 1);
 
     	$.notify({
         	icon: icon,

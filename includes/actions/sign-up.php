@@ -77,6 +77,15 @@ function email_RegistrationForm($email, $token, $url)
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
 
+    $mail->Priority = 1; // For web
+    $mail->SMTPOptions = array(
+            'ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+            )
+        );
+
     $mail->setFrom("09488824630gebson@gmail.com", "St. Vincent Strambi C.P of Home for the Aged");
     $mail->addAddress($email);
     $mail->addReplyTo("09488824630gebson@gmail.com", "St. Vincent Strambi C.P of Home for the Aged");
@@ -171,3 +180,4 @@ function email_RegistrationForm($email, $token, $url)
         echo json_encode(array('status' => 1));
     }
 }
+?>

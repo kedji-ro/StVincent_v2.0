@@ -20,16 +20,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$_SESSION['st_email'] = $email; 
 		$_SESSION['st_address'] = $address;  
         
+		$_SESSION['message'] = "Profile updated successfully.";
+		$_SESSION['message_type'] = "success";
+
 		if ($_SESSION['st_role'] == 'admin') {
 			header ("Location: http://localhost:8080/GitHub/StVincent_v2.0/dashboard/admin/?settings");
 		} else {
 			header ("Location: http://localhost:8080/GitHub/StVincent_v2.0/dashboard/?settings");	
 		}
-        echo $_SESSION['st_role'];
+        // echo $_SESSION['st_role'];
 		//echo json_encode(array('status'=>1)); 
 	}
-	else{
-		echo json_encode(array('status'=>0));
+	else {
+		$_SESSION['message'] = "Something went wrong. Please try again later.";
+		$_SESSION['message_type'] = "danger";
 	}  
 	$conn->close(); 
 }
